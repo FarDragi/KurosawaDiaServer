@@ -1,0 +1,25 @@
+{
+  "name": "kurosawadiaserver",
+  "version": "1.0.0",
+  "description": "Server from KurosawaDia",
+  "main": "src/index.ts",
+  "scripts": {
+      "start": "ts-node -r tsconfig-paths/register .",
+      "lint": "eslint . --ext .ts",
+      "build": "tsc -p ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FarDragi/KurosawaDiaServer.git"
+  },
+  "author": {
+      "name": "Gabriel Paulucci",
+      "email": "gabrielpauluccimunizmendes@gmail.com",
+      "url": "https://github.com/Gabriel-Paulucci"
+  },
+  "private": "true",
+  "bugs": {
+      "url": "https://github.com/FarDragi/KurosawaDia/issues"
+  },
+  "homepage": "https://kurosawa.zuraaa.com"
+}
