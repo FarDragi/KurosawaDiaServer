@@ -1,10 +1,15 @@
-import nestServer from './server'
+import { NestFactory } from '@nestjs/core'
+import { config } from 'dotenv'
+import { AppModule } from './modules/app.module'
+import { env } from 'process'
+
+config()
 
 init().catch(error => {
     console.log(error)
 })
 
 async function init () {
-    await nestServer.config()
-    await nestServer.start()
+    const server = await NestFactory.create(AppModule)
+    await server.listen(env.nest_port as string)
 }
