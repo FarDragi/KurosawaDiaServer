@@ -10,4 +10,8 @@ export class UserService {
     constructor (@InjectRepository(User) userRepository: Repository<User>) {
         this.userRepository = userRepository
     }
+
+    getString () {
+        return 'teste2'
+    }
 }
