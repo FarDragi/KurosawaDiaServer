@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
+import { AppGateway } from './app.gateway'
 import { UserModule } from './modules/user/user.module'
 
 @Module({
@@ -8,7 +9,9 @@ import { UserModule } from './modules/user/user.module'
         UserModule
     ],
     controllers: [],
-    providers: []
+    providers: [
+        AppGateway
+    ]
 })
 export class AppModule {
 
