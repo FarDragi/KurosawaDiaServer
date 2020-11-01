@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
+import { PrefixModule } from '@resources/prefix/prefix.module'
 import { AppGateway } from './app.gateway'
-import { UserModule } from './modules/user/user.module'
 
 @Module({
     imports: [
         TypeOrmModule.forRoot(),
-        UserModule
+        PrefixModule
     ],
     controllers: [],
     providers: [
