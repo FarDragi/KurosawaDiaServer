@@ -2,9 +2,7 @@ import { Logger } from '@nestjs/common'
 import { OnGatewayConnection, OnGatewayDisconnect, OnGatewayInit, WebSocketGateway } from '@nestjs/websockets'
 import { Server, Socket } from 'socket.io'
 
-@WebSocketGateway({
-
-})
+@WebSocketGateway()
 export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
     private _logger: Logger = new Logger('AppGateway')
 

@@ -1,20 +1,12 @@
-import { Column, Entity, Index, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm'
 import { Idol } from './idol.entity'
 
 @Entity('guilds')
 export class Guild {
-    @PrimaryGeneratedColumn('increment', {
-        type: 'bigint',
+    @PrimaryColumn('bigint', {
         unsigned: true
     })
-    id!: number
-
-    @Column('varchar', {
-        nullable: false,
-        length: 20
-    })
-    @Index({ unique: true })
-    discordId!: string
+    id!: string
 
     @Column('varchar', {
         nullable: false,
@@ -22,6 +14,13 @@ export class Guild {
         default: '~'
     })
     prefix!: string
+
+    @Column('varchar', {
+        nullable: false,
+        length: 6,
+        default: 'en-us'
+    })
+    lang!: string
 
     @OneToMany(() => Idol, x => x.guild)
     idols!: Idol[]

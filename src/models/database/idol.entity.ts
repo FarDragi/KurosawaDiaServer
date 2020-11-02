@@ -14,17 +14,21 @@ export class Idol {
         nullable: false,
         unsigned: true
     })
-    guildId!: number
+    guildId!: string
 
     @Column('bigint', {
         nullable: false,
         unsigned: true
     })
-    userId!: number
+    userId!: string
 
-    @ManyToOne(() => Guild, x => x.idols)
+    @ManyToOne(() => Guild, x => x.idols, {
+        cascade: true
+    })
     guild!: Guild
 
-    @ManyToOne(() => User, x => x.idols)
+    @ManyToOne(() => User, x => x.idols, {
+        cascade: true
+    })
     user!: User
 }

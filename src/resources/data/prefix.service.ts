@@ -4,7 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 
 @Injectable()
-export class GuildService {
+export class PrefixService {
     private _guildRepo: Repository<Guild>
 
     constructor (@InjectRepository(Guild) guildRepo: Repository<Guild>) {
@@ -14,7 +14,7 @@ export class GuildService {
     async setPrefix (guildDiscordId: string, newPrefix: string): Promise<Guild> {
         const guild = await this._guildRepo.findOne({
             where: {
-                discordId: guildDiscordId
+                id: guildDiscordId
             }
         }) as Guild
 
@@ -27,13 +27,13 @@ export class GuildService {
     async getPrefix (guildDiscordId: string): Promise<Guild> {
         let guild = await this._guildRepo.findOne({
             where: {
-                discordId: guildDiscordId
+                id: guildDiscordId
             }
         }) as Guild
 
         if (!guild) {
             guild = this._guildRepo.create({
-                discordId: guildDiscordId
+                id: guildDiscordId
             })
 
             await this._guildRepo.save(guild)
