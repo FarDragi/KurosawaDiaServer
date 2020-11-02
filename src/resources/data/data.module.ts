@@ -3,7 +3,7 @@ import { Idol } from '@models/database/idol.entity'
 import { User } from '@models/database/user.entity'
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { PrefixService } from './prefix.service'
+import { ConfigService } from './config.service'
 import { RegisterService } from './register.service'
 
 @Module({
@@ -15,11 +15,11 @@ import { RegisterService } from './register.service'
         ])
     ],
     providers: [
-        PrefixService,
+        ConfigService,
         RegisterService
     ],
     exports: [
-        PrefixService,
+        ConfigService,
         RegisterService
     ]
 })

@@ -1,15 +1,15 @@
 import { Module } from '@nestjs/common'
 import { DataModule } from '@resources/data/data.module'
-import { PrefixGateway } from './prefix.gateway'
+import { ConfigGateway } from './config.gateway'
 
 @Module({
     imports: [
         DataModule
     ],
     providers: [
-        PrefixGateway
+        ConfigGateway
     ]
 })
-export class PrefixModule {
+export class ConfigModule {
 
 }

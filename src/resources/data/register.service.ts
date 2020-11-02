@@ -21,12 +21,15 @@ export class RegisterService {
         this._guildRepo = guildRepo
     }
 
-    async registerIdol (guildId: string, userId: string): Promise<Idol> {
+    async registerIdol (guildId: string, userId: string): Promise<Guild> {
         let idol = await this._idolRepo.findOne({
             where: {
                 guildId: guildId,
                 userId: userId
-            }
+            },
+            relations: [
+                'guild'
+            ]
         })
 
         if (!idol) {
@@ -46,6 +49,6 @@ export class RegisterService {
             this._idolRepo.save(idol)
         }
 
-        return idol
+        return idol.guild
     }
 }
