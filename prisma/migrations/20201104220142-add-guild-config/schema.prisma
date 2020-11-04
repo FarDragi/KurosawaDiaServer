@@ -1,0 +1,44 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+    provider = "mysql"
+    url = "***"
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model User {
+    id        Int    @id @default(autoincrement())
+    discordId String @unique
+    idols     Idol[]
+
+    @@index([discordId])
+}
+
+model Guild {
+    id        Int         @id @default(autoincrement())
+    discordId String      @unique
+    idols     Idol[]
+    configId  Int         @unique
+    config    GuildConfig @relation(fields: [configId], references: [id])
+
+    @@index([discordId])
+}
+
+model GuildConfig {
+    id      Int    @id @default(autoincrement())
+    prefix  String @default("~")
+    lang    String @default("en-us")
+    guild   Guild
+}
+
+model Idol {
+    id      Int   @id @default(autoincrement())
+    guildId Int
+    userId  Int
+    guild   Guild @relation(fields: [guildId], references: [id])
+    user    User  @relation(fields: [userId], references: [id])
+}

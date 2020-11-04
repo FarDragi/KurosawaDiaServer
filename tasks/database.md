@@ -1,4 +1,4 @@
 # Database
 
 - [ ] Remove TypeORM
-- [ ] Add Prisma
+- [x] Add Prisma
