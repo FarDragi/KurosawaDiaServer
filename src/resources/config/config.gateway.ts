@@ -1,8 +1,8 @@
 import { Payload } from '@models/util/payload'
 import { ConnectedSocket, MessageBody, SubscribeMessage, WebSocketGateway } from '@nestjs/websockets'
-import { ConfigService } from '@resources/data/config.service'
 import { Socket } from 'socket.io'
 import { SetLang, SetPrefix } from './config.resolver'
+import { ConfigService } from './config.service'
 
 @WebSocketGateway()
 export class ConfigGateway {
@@ -18,15 +18,11 @@ export class ConfigGateway {
             payload.data.guildId,
             payload.data.newPrefix
         )
-        client.emit(payload.messageId, guild.prefix)
+        client.emit(payload.messageId, guild.config.prefix)
     }
 
     @SubscribeMessage('setLang')
     async getLang (@ConnectedSocket() client: Socket, @MessageBody() payload: Payload<SetLang>) {
-        const guild = await this._configService.setLang(
-            payload.data.guildId,
-            payload.data.newLang
-        )
-        client.emit(payload.messageId, guild.lang)
+
     }
 }

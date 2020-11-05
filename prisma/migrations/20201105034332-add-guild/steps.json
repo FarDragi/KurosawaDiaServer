@@ -67,24 +67,6 @@
       }
     },
     {
-      "tag": "CreateField",
-      "model": "Guild",
-      "field": "configId",
-      "type": "Int",
-      "arity": "Required"
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Guild",
-          "field": "configId"
-        },
-        "directive": "unique"
-      }
-    },
-    {
       "tag": "CreateDirective",
       "location": {
         "path": {

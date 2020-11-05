@@ -8,11 +8,5 @@ datasource db {
 
 generator client {
     provider = "prisma-client-js"
-}
-
-model User {
-    id        Int    @id @default(autoincrement())
-    discordId String @unique
-
-    @@index([discordId])
+    previewFeatures = ["connectOrCreate"]
 }

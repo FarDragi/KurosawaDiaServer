@@ -8,12 +8,12 @@ datasource db {
 
 generator client {
     provider = "prisma-client-js"
+    previewFeatures = ["connectOrCreate"]
 }
 
 model User {
     id        Int    @id @default(autoincrement())
     discordId String @unique
-    idols     Idol[]
 
     @@index([discordId])
 }
@@ -21,7 +21,6 @@ model User {
 model Guild {
     id        Int         @id @default(autoincrement())
     discordId String      @unique
-    idols     Idol[]
     configId  Int         @unique
     config    GuildConfig @relation(fields: [configId], references: [id])
 
@@ -32,7 +31,6 @@ model GuildConfig {
     id      Int    @id @default(autoincrement())
     prefix  String @default("~")
     lang    String @default("en-us")
-    guild   Guild
 }
 
 model Idol {
@@ -41,4 +39,6 @@ model Idol {
     userId  Int
     guild   Guild @relation(fields: [guildId], references: [id])
     user    User  @relation(fields: [userId], references: [id])
+
+    @@unique([guildId, userId])
 }

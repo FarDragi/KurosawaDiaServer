@@ -114,10 +114,21 @@
     },
     {
       "tag": "CreateField",
-      "model": "GuildConfig",
-      "field": "guild",
-      "type": "Guild",
+      "model": "Guild",
+      "field": "configId",
+      "type": "Int",
       "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Guild",
+          "field": "configId"
+        },
+        "directive": "unique"
+      }
     },
     {
       "tag": "CreateField",

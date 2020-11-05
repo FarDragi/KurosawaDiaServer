@@ -1,8 +1,8 @@
 import { Payload } from '@models/util/payload'
 import { ConnectedSocket, MessageBody, SubscribeMessage, WebSocketGateway } from '@nestjs/websockets'
-import { RegisterService } from '@resources/data/register.service'
 import { Socket } from 'socket.io'
 import { RegisterIdol, ResultRegisterIdol } from './register.resolver'
+import { RegisterService } from './register.service'
 
 @WebSocketGateway()
 export class RegisterGateway {
@@ -14,13 +14,18 @@ export class RegisterGateway {
 
     @SubscribeMessage('registerIdol')
     async registerIdol (@ConnectedSocket() client: Socket, @MessageBody() payload: Payload<RegisterIdol>) {
-        const guild = await this._registerService.registerIdol(
+        console.log(payload)
+
+        const idol = await this._registerService.registerIdol(
             payload.data.guildId,
             payload.data.userId
         )
+
+        console.log(idol)
+
         client.emit(payload.messageId, {
-            prefix: guild.prefix,
-            lang: guild.lang
+            prefix: idol?.guild.config.prefix,
+            lang: idol?.guild.config.lang
         } as ResultRegisterIdol)
     }
 }

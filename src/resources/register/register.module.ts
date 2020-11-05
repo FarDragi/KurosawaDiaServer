@@ -1,13 +1,15 @@
 import { Module } from '@nestjs/common'
-import { DataModule } from '@resources/data/data.module'
+import { PrismaModule } from '@resources/prisma/prisma.module'
 import { RegisterGateway } from './register.gateway'
+import { RegisterService } from './register.service'
 
 @Module({
     imports: [
-        DataModule
+        PrismaModule
     ],
     providers: [
-        RegisterGateway
+        RegisterGateway,
+        RegisterService
     ]
 })
 export class RegisterModule {

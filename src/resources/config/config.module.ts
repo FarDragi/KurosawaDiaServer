@@ -1,13 +1,15 @@
 import { Module } from '@nestjs/common'
-import { DataModule } from '@resources/data/data.module'
+import { PrismaModule } from '@resources/prisma/prisma.module'
 import { ConfigGateway } from './config.gateway'
+import { ConfigService } from './config.service'
 
 @Module({
     imports: [
-        DataModule
+        PrismaModule
     ],
     providers: [
-        ConfigGateway
+        ConfigGateway,
+        ConfigService
     ]
 })
 export class ConfigModule {

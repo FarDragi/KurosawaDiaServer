@@ -155,18 +155,20 @@
       "value": "[id]"
     },
     {
-      "tag": "CreateField",
-      "model": "User",
-      "field": "idols",
-      "type": "Idol",
-      "arity": "List"
-    },
-    {
-      "tag": "CreateField",
-      "model": "Guild",
-      "field": "idols",
-      "type": "Idol",
-      "arity": "List"
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Model",
+          "model": "Idol",
+          "arguments": [
+            {
+              "name": "",
+              "value": "[guildId, userId]"
+            }
+          ]
+        },
+        "directive": "unique"
+      }
     }
   ]
 }
