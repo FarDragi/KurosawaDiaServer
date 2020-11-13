@@ -14,14 +14,10 @@ export class RegisterGateway {
 
     @SubscribeMessage('registerIdol')
     async registerIdol (@ConnectedSocket() client: Socket, @MessageBody() payload: Payload<RegisterIdol>) {
-        console.log(payload)
-
         const idol = await this._registerService.registerIdol(
             payload.data.guildId,
             payload.data.userId
         )
-
-        console.log(idol)
 
         client.emit(payload.messageId, {
             prefix: idol?.guild.config.prefix,

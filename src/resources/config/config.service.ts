@@ -27,7 +27,21 @@ export class ConfigService {
         })
     }
 
-    setLang () {
-
+    async setLang (guildDiscordId: string, newLang: string) {
+        return await this.prisma.guild.update({
+            where: {
+                discordId: guildDiscordId
+            },
+            data: {
+                config: {
+                    update: {
+                        lang: newLang
+                    }
+                }
+            },
+            select: {
+                config: true
+            }
+        })
     }
 }

@@ -23,6 +23,10 @@ export class ConfigGateway {
 
     @SubscribeMessage('setLang')
     async getLang (@ConnectedSocket() client: Socket, @MessageBody() payload: Payload<SetLang>) {
-
+        const guild = await this._configService.setLang(
+            payload.data.guildId,
+            payload.data.newLang
+        )
+        client.emit(payload.messageId, guild.config.lang)
     }
 }
