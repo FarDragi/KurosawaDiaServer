@@ -1,0 +1,7 @@
+# Prisma Migrate lockfile v1
+
+20201113163546-init
+20201113163815-add-users
+20201113164018-add-guilds
+20201113164220-add-guild-configs
+20201113164520-add-idols

@@ -3,7 +3,7 @@
 
 datasource db {
     provider = "mysql"
-    url      = env("DATABASE_URL")
+    url = "***"
 }
 
 generator client {
@@ -13,7 +13,6 @@ generator client {
 model User {
     id        Int    @id @default(autoincrement())
     discordId String @unique
-    Idol      Idol[]
 
     @@index(discordId)
     @@map("users")
@@ -24,7 +23,6 @@ model Guild {
     discordId String      @unique
     configId  Int         @unique
     config    GuildConfig @relation(fields: [configId], references: [id])
-    Idol      Idol[]
 
     @@index([discordId])
     @@map("guilds")
@@ -37,15 +35,4 @@ model GuildConfig {
     Guild  Guild[]
 
     @@map("guildConfigs")
-}
-
-model Idol {
-    id      Int   @id @default(autoincrement())
-    guildId Int
-    userId  Int
-    guild   Guild @relation(fields: [guildId], references: [id])
-    user    User  @relation(fields: [userId], references: [id])
-
-    @@unique([guildId, userId])
-    @@map("idols")
 }
